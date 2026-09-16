@@ -183,5 +183,19 @@ class Backend:
     def address(self, ptr: Any) -> int:
         return int(self.ffi.cast("size_t", ptr)) if self.ffi else int(ptr)
 
+    def opt_pointer(self, value: Any) -> Any:
+        """Wrap a raw integer handle or NULL for a variadic pointer argument."""
+        if value is None:
+            return self.null
+        if self.ffi:
+            return self.ffi.cast("void *", value)
+        return ct.c_void_p(value)
+
+    def easy_setopt(self, handle: Any, option: int, value: Any) -> int:
+        """curl_easy_setopt with explicit variadic marshalling for ctypes."""
+        if not self.ffi and isinstance(value, int):
+            value = ct.c_void_p(value)  # raw ints would be marshalled as 32-bit c_int
+        return self.lib.curl_easy_setopt(handle, option, value)
+
 
 backend = Backend()

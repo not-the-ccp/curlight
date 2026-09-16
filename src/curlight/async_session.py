@@ -19,7 +19,7 @@ class _SharedSession(Session):
         self._share = share
 
     def _configure_shared_state(self, curl: Curl) -> None:
-        curl._check(b.lib.curl_easy_setopt(curl._handle, int(CurlOpt.SHARE), self._share))
+        curl._check(b.easy_setopt(curl._handle, int(CurlOpt.SHARE), b.opt_pointer(self._share)))
 
 
 class AsyncSession:
