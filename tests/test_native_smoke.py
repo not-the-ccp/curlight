@@ -1,4 +1,5 @@
 """Prove the libcurl ABI with no package code or external network dependency."""
+
 import ctypes as ct
 from ctypes.util import find_library
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer

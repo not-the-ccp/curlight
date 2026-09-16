@@ -1,8 +1,10 @@
 """Small ABI adapter. All native allocations are owned by the calling Curl object."""
+
 from __future__ import annotations
 
 import ctypes as ct
 import os
+import re
 from ctypes.util import find_library
 from typing import Any
 
@@ -29,6 +31,10 @@ class Message(ct.Structure):
 CDEF = """
 typedef void CURL;
 typedef void CURLM;
+typedef void CURLSH;
+CURLSH *curl_share_init(void);
+int curl_share_setopt(CURLSH *, int, ...);
+int curl_share_cleanup(CURLSH *);
 typedef long long curl_off_t;
 struct curl_slist { char *data; struct curl_slist *next; };
 struct curl_blob { void *data; size_t len; unsigned int flags; };
@@ -77,6 +83,9 @@ class Backend:
         self.lib: Any = self.ffi.dlopen(library) if self.ffi else ct.CDLL(library)
         if not self.ffi:
             signatures = {
+                "curl_share_init": (ct.c_void_p, []),
+                "curl_share_setopt": (ct.c_int, [ct.c_void_p, ct.c_int]),
+                "curl_share_cleanup": (ct.c_int, [ct.c_void_p]),
                 "curl_global_init": (ct.c_int, [ct.c_long]),
                 "curl_version": (ct.c_char_p, []),
                 "curl_easy_init": (ct.c_void_p, []),
@@ -102,12 +111,16 @@ class Backend:
         code = self.lib.curl_global_init(3)
         if code:
             raise ImportError(f"curl_global_init failed: {code}")
+        version = self.string(self.lib.curl_version()).decode()
+        match = re.search(r"libcurl/(\d+)\.(\d+)\.(\d+)", version)
+        if not match or tuple(map(int, match.groups())) < (7, 85, 0):
+            raise ImportError(f"curlight requires libcurl >= 7.85.0; found {version}")
         # Never call global_cleanup: other packages/threads may also own libcurl handles.
 
     def scalar(self, kind: str, value: int) -> Any:
         if self.ffi:
             return self.ffi.cast(kind, value)
-        return {"long": ct.c_long, "curl_off_t": ct.c_int64}[kind](value)
+        return {"int": ct.c_int, "long": ct.c_long, "curl_off_t": ct.c_int64}[kind](value)
 
     def buffer(self, data: bytes) -> Any:
         return self.ffi.new("char[]", data) if self.ffi else ct.create_string_buffer(data)
@@ -115,17 +128,26 @@ class Backend:
     def pointer(self, kind: str) -> Any:
         if self.ffi:
             return self.ffi.new(kind + " *")
-        typ = {"long": ct.c_long, "double": ct.c_double, "curl_off_t": ct.c_int64,
-               "int": ct.c_int, "char *": ct.c_char_p,
-               "struct curl_slist *": ct.POINTER(SList)}[kind]
+        typ: Any = {
+            "long": ct.c_long,
+            "double": ct.c_double,
+            "curl_off_t": ct.c_int64,
+            "int": ct.c_int,
+            "char *": ct.c_char_p,
+            "struct curl_slist *": ct.POINTER(SList),
+        }[kind]
         return ct.pointer(typ())
 
     def string(self, ptr: Any) -> bytes:
         if not ptr:
             return b""
-        return self.ffi.string(ptr) if self.ffi else (ptr if isinstance(ptr, bytes) else ct.string_at(ptr))
+        return (
+            self.ffi.string(ptr)
+            if self.ffi
+            else (ptr if isinstance(ptr, bytes) else ct.string_at(ptr))
+        )
 
-    def bytes(self, ptr: Any, length: int) -> bytes:
+    def read_memory(self, ptr: Any, length: int) -> bytes:
         return bytes(self.ffi.buffer(ptr, length)) if self.ffi else ct.string_at(ptr, length)
 
     def write_memory(self, ptr: Any, data: bytes) -> None:

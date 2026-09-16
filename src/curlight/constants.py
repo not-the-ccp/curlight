@@ -316,6 +316,7 @@ class CurlOpt(IntEnum):
     CAINFO_BLOB = 40309
     PROXY_CAINFO_BLOB = 40310
 
+
 class CurlInfo(IntEnum):
     """CURLINFO_ constants from libcurl headers."""
 
@@ -405,6 +406,7 @@ class CurlInfo(IntEnum):
     QUEUE_TIME_T = 6291521
     POSTTRANSFER_TIME_T = 6291523
     EARLYDATA_SENT_T = 6291524
+
 
 class CurlCode(IntEnum):
     """CURLE_ constants from libcurl headers."""
@@ -524,6 +526,7 @@ class CurlCode(IntEnum):
     RESERVED125 = 125
     RESERVED126 = 126
 
+
 class MultiOpt(IntEnum):
     """CURLMOPT_ constants from libcurl headers."""
 
@@ -545,6 +548,7 @@ class MultiOpt(IntEnum):
     CONTENT_LENGTH_PENALTY_SIZE = 30009
     CHUNK_LENGTH_PENALTY_SIZE = 30010
 
+
 class MultiCode(IntEnum):
     """CURLM_ constants from libcurl headers."""
 
@@ -563,6 +567,7 @@ class MultiCode(IntEnum):
     ABORTED_BY_CALLBACK = 11
     UNRECOVERABLE_POLL = 12
 
+
 class HttpVersion(IntEnum):
     """CURL_HTTP_VERSION_ constants from libcurl headers."""
 
@@ -579,6 +584,7 @@ class ProxyType(IntEnum):
     SOCKS4A = 6
     SOCKS5_HOSTNAME = 7
 
+
 class SslVersion(IntEnum):
     """CURL_SSLVERSION_ constants from libcurl headers."""
 
@@ -589,6 +595,7 @@ class IpResolve(IntEnum):
     WHATEVER = 0
     V4 = 1
     V6 = 2
+
 
 class CurlAuth(IntFlag):
     """CURLAUTH_ constants from libcurl headers."""
@@ -607,6 +614,7 @@ class CurlAuth(IntFlag):
     BEARER = 64
     AWS_SIGV4 = 128
     ONLY = 2147483648
+
 
 class Protocol(IntFlag):
     """CURLPROTO_ constants from libcurl headers."""
@@ -643,6 +651,7 @@ class Protocol(IntFlag):
     MQTT = 268435456
     GOPHERS = 536870912
 
+
 class SslOpt(IntFlag):
     """CURLSSLOPT_ constants from libcurl headers."""
 
@@ -653,6 +662,7 @@ class SslOpt(IntFlag):
     NATIVE_CA = 16
     AUTO_CLIENT_CERT = 32
     EARLYDATA = 64
+
 
 class CurlPause(IntFlag):
     """CURLPAUSE_ constants from libcurl headers."""
@@ -666,312 +676,312 @@ class CurlPause(IntFlag):
 
 
 OPTION_KINDS: dict[int, str] = {
-    10001: 'cbpoint',  # CURLOPT_WRITEDATA
-    10002: 'stringpoint',  # CURLOPT_URL
-    3: 'long',  # CURLOPT_PORT
-    10004: 'stringpoint',  # CURLOPT_PROXY
-    10005: 'stringpoint',  # CURLOPT_USERPWD
-    10006: 'stringpoint',  # CURLOPT_PROXYUSERPWD
-    10007: 'stringpoint',  # CURLOPT_RANGE
-    10009: 'cbpoint',  # CURLOPT_READDATA
-    10010: 'objectpoint',  # CURLOPT_ERRORBUFFER
-    20011: 'functionpoint',  # CURLOPT_WRITEFUNCTION
-    20012: 'functionpoint',  # CURLOPT_READFUNCTION
-    13: 'long',  # CURLOPT_TIMEOUT
-    14: 'long',  # CURLOPT_INFILESIZE
-    10015: 'objectpoint',  # CURLOPT_POSTFIELDS
-    10016: 'stringpoint',  # CURLOPT_REFERER
-    10017: 'stringpoint',  # CURLOPT_FTPPORT
-    10018: 'stringpoint',  # CURLOPT_USERAGENT
-    19: 'long',  # CURLOPT_LOW_SPEED_LIMIT
-    20: 'long',  # CURLOPT_LOW_SPEED_TIME
-    21: 'long',  # CURLOPT_RESUME_FROM
-    10022: 'stringpoint',  # CURLOPT_COOKIE
-    10023: 'slistpoint',  # CURLOPT_HTTPHEADER
-    10024: 'objectpoint',  # CURLOPT_HTTPPOST
-    10025: 'stringpoint',  # CURLOPT_SSLCERT
-    10026: 'stringpoint',  # CURLOPT_KEYPASSWD
-    27: 'long',  # CURLOPT_CRLF
-    10028: 'slistpoint',  # CURLOPT_QUOTE
-    10029: 'cbpoint',  # CURLOPT_HEADERDATA
-    10031: 'stringpoint',  # CURLOPT_COOKIEFILE
-    32: 'values',  # CURLOPT_SSLVERSION
-    33: 'values',  # CURLOPT_TIMECONDITION
-    34: 'long',  # CURLOPT_TIMEVALUE
-    10036: 'stringpoint',  # CURLOPT_CUSTOMREQUEST
-    10037: 'objectpoint',  # CURLOPT_STDERR
-    10039: 'slistpoint',  # CURLOPT_POSTQUOTE
-    41: 'long',  # CURLOPT_VERBOSE
-    42: 'long',  # CURLOPT_HEADER
-    43: 'long',  # CURLOPT_NOPROGRESS
-    44: 'long',  # CURLOPT_NOBODY
-    45: 'long',  # CURLOPT_FAILONERROR
-    46: 'long',  # CURLOPT_UPLOAD
-    47: 'long',  # CURLOPT_POST
-    48: 'long',  # CURLOPT_DIRLISTONLY
-    50: 'long',  # CURLOPT_APPEND
-    51: 'values',  # CURLOPT_NETRC
-    52: 'long',  # CURLOPT_FOLLOWLOCATION
-    53: 'long',  # CURLOPT_TRANSFERTEXT
-    54: 'long',  # CURLOPT_PUT
-    20056: 'functionpoint',  # CURLOPT_PROGRESSFUNCTION
-    10057: 'cbpoint',  # CURLOPT_XFERINFODATA
-    58: 'long',  # CURLOPT_AUTOREFERER
-    59: 'long',  # CURLOPT_PROXYPORT
-    60: 'long',  # CURLOPT_POSTFIELDSIZE
-    61: 'long',  # CURLOPT_HTTPPROXYTUNNEL
-    10062: 'stringpoint',  # CURLOPT_INTERFACE
-    10063: 'stringpoint',  # CURLOPT_KRBLEVEL
-    64: 'long',  # CURLOPT_SSL_VERIFYPEER
-    10065: 'stringpoint',  # CURLOPT_CAINFO
-    68: 'long',  # CURLOPT_MAXREDIRS
-    69: 'long',  # CURLOPT_FILETIME
-    10070: 'slistpoint',  # CURLOPT_TELNETOPTIONS
-    71: 'long',  # CURLOPT_MAXCONNECTS
-    74: 'long',  # CURLOPT_FRESH_CONNECT
-    75: 'long',  # CURLOPT_FORBID_REUSE
-    10076: 'stringpoint',  # CURLOPT_RANDOM_FILE
-    10077: 'stringpoint',  # CURLOPT_EGDSOCKET
-    78: 'long',  # CURLOPT_CONNECTTIMEOUT
-    20079: 'functionpoint',  # CURLOPT_HEADERFUNCTION
-    80: 'long',  # CURLOPT_HTTPGET
-    81: 'long',  # CURLOPT_SSL_VERIFYHOST
-    10082: 'stringpoint',  # CURLOPT_COOKIEJAR
-    10083: 'stringpoint',  # CURLOPT_SSL_CIPHER_LIST
-    84: 'values',  # CURLOPT_HTTP_VERSION
-    85: 'long',  # CURLOPT_FTP_USE_EPSV
-    10086: 'stringpoint',  # CURLOPT_SSLCERTTYPE
-    10087: 'stringpoint',  # CURLOPT_SSLKEY
-    10088: 'stringpoint',  # CURLOPT_SSLKEYTYPE
-    10089: 'stringpoint',  # CURLOPT_SSLENGINE
-    90: 'long',  # CURLOPT_SSLENGINE_DEFAULT
-    91: 'long',  # CURLOPT_DNS_USE_GLOBAL_CACHE
-    92: 'long',  # CURLOPT_DNS_CACHE_TIMEOUT
-    10093: 'slistpoint',  # CURLOPT_PREQUOTE
-    20094: 'functionpoint',  # CURLOPT_DEBUGFUNCTION
-    10095: 'cbpoint',  # CURLOPT_DEBUGDATA
-    96: 'long',  # CURLOPT_COOKIESESSION
-    10097: 'stringpoint',  # CURLOPT_CAPATH
-    98: 'long',  # CURLOPT_BUFFERSIZE
-    99: 'long',  # CURLOPT_NOSIGNAL
-    10100: 'objectpoint',  # CURLOPT_SHARE
-    101: 'values',  # CURLOPT_PROXYTYPE
-    10102: 'stringpoint',  # CURLOPT_ACCEPT_ENCODING
-    10103: 'objectpoint',  # CURLOPT_PRIVATE
-    10104: 'slistpoint',  # CURLOPT_HTTP200ALIASES
-    105: 'long',  # CURLOPT_UNRESTRICTED_AUTH
-    106: 'long',  # CURLOPT_FTP_USE_EPRT
-    107: 'values',  # CURLOPT_HTTPAUTH
-    20108: 'functionpoint',  # CURLOPT_SSL_CTX_FUNCTION
-    10109: 'cbpoint',  # CURLOPT_SSL_CTX_DATA
-    110: 'long',  # CURLOPT_FTP_CREATE_MISSING_DIRS
-    111: 'values',  # CURLOPT_PROXYAUTH
-    112: 'long',  # CURLOPT_SERVER_RESPONSE_TIMEOUT
-    113: 'values',  # CURLOPT_IPRESOLVE
-    114: 'long',  # CURLOPT_MAXFILESIZE
-    30115: 'off_t',  # CURLOPT_INFILESIZE_LARGE
-    30116: 'off_t',  # CURLOPT_RESUME_FROM_LARGE
-    30117: 'off_t',  # CURLOPT_MAXFILESIZE_LARGE
-    10118: 'stringpoint',  # CURLOPT_NETRC_FILE
-    119: 'values',  # CURLOPT_USE_SSL
-    30120: 'off_t',  # CURLOPT_POSTFIELDSIZE_LARGE
-    121: 'long',  # CURLOPT_TCP_NODELAY
-    129: 'values',  # CURLOPT_FTPSSLAUTH
-    20130: 'functionpoint',  # CURLOPT_IOCTLFUNCTION
-    10131: 'cbpoint',  # CURLOPT_IOCTLDATA
-    10134: 'stringpoint',  # CURLOPT_FTP_ACCOUNT
-    10135: 'stringpoint',  # CURLOPT_COOKIELIST
-    136: 'long',  # CURLOPT_IGNORE_CONTENT_LENGTH
-    137: 'long',  # CURLOPT_FTP_SKIP_PASV_IP
-    138: 'values',  # CURLOPT_FTP_FILEMETHOD
-    139: 'long',  # CURLOPT_LOCALPORT
-    140: 'long',  # CURLOPT_LOCALPORTRANGE
-    141: 'long',  # CURLOPT_CONNECT_ONLY
-    20142: 'functionpoint',  # CURLOPT_CONV_FROM_NETWORK_FUNCTION
-    20143: 'functionpoint',  # CURLOPT_CONV_TO_NETWORK_FUNCTION
-    20144: 'functionpoint',  # CURLOPT_CONV_FROM_UTF8_FUNCTION
-    30145: 'off_t',  # CURLOPT_MAX_SEND_SPEED_LARGE
-    30146: 'off_t',  # CURLOPT_MAX_RECV_SPEED_LARGE
-    10147: 'stringpoint',  # CURLOPT_FTP_ALTERNATIVE_TO_USER
-    20148: 'functionpoint',  # CURLOPT_SOCKOPTFUNCTION
-    10149: 'cbpoint',  # CURLOPT_SOCKOPTDATA
-    150: 'long',  # CURLOPT_SSL_SESSIONID_CACHE
-    151: 'values',  # CURLOPT_SSH_AUTH_TYPES
-    10152: 'stringpoint',  # CURLOPT_SSH_PUBLIC_KEYFILE
-    10153: 'stringpoint',  # CURLOPT_SSH_PRIVATE_KEYFILE
-    154: 'long',  # CURLOPT_FTP_SSL_CCC
-    155: 'long',  # CURLOPT_TIMEOUT_MS
-    156: 'long',  # CURLOPT_CONNECTTIMEOUT_MS
-    157: 'long',  # CURLOPT_HTTP_TRANSFER_DECODING
-    158: 'long',  # CURLOPT_HTTP_CONTENT_DECODING
-    159: 'long',  # CURLOPT_NEW_FILE_PERMS
-    160: 'long',  # CURLOPT_NEW_DIRECTORY_PERMS
-    161: 'values',  # CURLOPT_POSTREDIR
-    10162: 'stringpoint',  # CURLOPT_SSH_HOST_PUBLIC_KEY_MD5
-    20163: 'functionpoint',  # CURLOPT_OPENSOCKETFUNCTION
-    10164: 'cbpoint',  # CURLOPT_OPENSOCKETDATA
-    10165: 'objectpoint',  # CURLOPT_COPYPOSTFIELDS
-    166: 'long',  # CURLOPT_PROXY_TRANSFER_MODE
-    20167: 'functionpoint',  # CURLOPT_SEEKFUNCTION
-    10168: 'cbpoint',  # CURLOPT_SEEKDATA
-    10169: 'stringpoint',  # CURLOPT_CRLFILE
-    10170: 'stringpoint',  # CURLOPT_ISSUERCERT
-    171: 'long',  # CURLOPT_ADDRESS_SCOPE
-    172: 'long',  # CURLOPT_CERTINFO
-    10173: 'stringpoint',  # CURLOPT_USERNAME
-    10174: 'stringpoint',  # CURLOPT_PASSWORD
-    10175: 'stringpoint',  # CURLOPT_PROXYUSERNAME
-    10176: 'stringpoint',  # CURLOPT_PROXYPASSWORD
-    10177: 'stringpoint',  # CURLOPT_NOPROXY
-    178: 'long',  # CURLOPT_TFTP_BLKSIZE
-    10179: 'stringpoint',  # CURLOPT_SOCKS5_GSSAPI_SERVICE
-    180: 'long',  # CURLOPT_SOCKS5_GSSAPI_NEC
-    181: 'long',  # CURLOPT_PROTOCOLS
-    182: 'long',  # CURLOPT_REDIR_PROTOCOLS
-    10183: 'stringpoint',  # CURLOPT_SSH_KNOWNHOSTS
-    20184: 'functionpoint',  # CURLOPT_SSH_KEYFUNCTION
-    10185: 'cbpoint',  # CURLOPT_SSH_KEYDATA
-    10186: 'stringpoint',  # CURLOPT_MAIL_FROM
-    10187: 'slistpoint',  # CURLOPT_MAIL_RCPT
-    188: 'long',  # CURLOPT_FTP_USE_PRET
-    189: 'values',  # CURLOPT_RTSP_REQUEST
-    10190: 'stringpoint',  # CURLOPT_RTSP_SESSION_ID
-    10191: 'stringpoint',  # CURLOPT_RTSP_STREAM_URI
-    10192: 'stringpoint',  # CURLOPT_RTSP_TRANSPORT
-    193: 'long',  # CURLOPT_RTSP_CLIENT_CSEQ
-    194: 'long',  # CURLOPT_RTSP_SERVER_CSEQ
-    10195: 'cbpoint',  # CURLOPT_INTERLEAVEDATA
-    20196: 'functionpoint',  # CURLOPT_INTERLEAVEFUNCTION
-    197: 'long',  # CURLOPT_WILDCARDMATCH
-    20198: 'functionpoint',  # CURLOPT_CHUNK_BGN_FUNCTION
-    20199: 'functionpoint',  # CURLOPT_CHUNK_END_FUNCTION
-    20200: 'functionpoint',  # CURLOPT_FNMATCH_FUNCTION
-    10201: 'cbpoint',  # CURLOPT_CHUNK_DATA
-    10202: 'cbpoint',  # CURLOPT_FNMATCH_DATA
-    10203: 'slistpoint',  # CURLOPT_RESOLVE
-    10204: 'stringpoint',  # CURLOPT_TLSAUTH_USERNAME
-    10205: 'stringpoint',  # CURLOPT_TLSAUTH_PASSWORD
-    10206: 'stringpoint',  # CURLOPT_TLSAUTH_TYPE
-    207: 'long',  # CURLOPT_TRANSFER_ENCODING
-    20208: 'functionpoint',  # CURLOPT_CLOSESOCKETFUNCTION
-    10209: 'cbpoint',  # CURLOPT_CLOSESOCKETDATA
-    210: 'values',  # CURLOPT_GSSAPI_DELEGATION
-    10211: 'stringpoint',  # CURLOPT_DNS_SERVERS
-    212: 'long',  # CURLOPT_ACCEPTTIMEOUT_MS
-    213: 'long',  # CURLOPT_TCP_KEEPALIVE
-    214: 'long',  # CURLOPT_TCP_KEEPIDLE
-    215: 'long',  # CURLOPT_TCP_KEEPINTVL
-    216: 'values',  # CURLOPT_SSL_OPTIONS
-    10217: 'stringpoint',  # CURLOPT_MAIL_AUTH
-    218: 'long',  # CURLOPT_SASL_IR
-    20219: 'functionpoint',  # CURLOPT_XFERINFOFUNCTION
-    10220: 'stringpoint',  # CURLOPT_XOAUTH2_BEARER
-    10221: 'stringpoint',  # CURLOPT_DNS_INTERFACE
-    10222: 'stringpoint',  # CURLOPT_DNS_LOCAL_IP4
-    10223: 'stringpoint',  # CURLOPT_DNS_LOCAL_IP6
-    10224: 'stringpoint',  # CURLOPT_LOGIN_OPTIONS
-    225: 'long',  # CURLOPT_SSL_ENABLE_NPN
-    226: 'long',  # CURLOPT_SSL_ENABLE_ALPN
-    227: 'long',  # CURLOPT_EXPECT_100_TIMEOUT_MS
-    10228: 'slistpoint',  # CURLOPT_PROXYHEADER
-    229: 'values',  # CURLOPT_HEADEROPT
-    10230: 'stringpoint',  # CURLOPT_PINNEDPUBLICKEY
-    10231: 'stringpoint',  # CURLOPT_UNIX_SOCKET_PATH
-    232: 'long',  # CURLOPT_SSL_VERIFYSTATUS
-    233: 'long',  # CURLOPT_SSL_FALSESTART
-    234: 'long',  # CURLOPT_PATH_AS_IS
-    10235: 'stringpoint',  # CURLOPT_PROXY_SERVICE_NAME
-    10236: 'stringpoint',  # CURLOPT_SERVICE_NAME
-    237: 'long',  # CURLOPT_PIPEWAIT
-    10238: 'stringpoint',  # CURLOPT_DEFAULT_PROTOCOL
-    239: 'long',  # CURLOPT_STREAM_WEIGHT
-    10240: 'objectpoint',  # CURLOPT_STREAM_DEPENDS
-    10241: 'objectpoint',  # CURLOPT_STREAM_DEPENDS_E
-    242: 'long',  # CURLOPT_TFTP_NO_OPTIONS
-    10243: 'slistpoint',  # CURLOPT_CONNECT_TO
-    244: 'long',  # CURLOPT_TCP_FASTOPEN
-    245: 'long',  # CURLOPT_KEEP_SENDING_ON_ERROR
-    10246: 'stringpoint',  # CURLOPT_PROXY_CAINFO
-    10247: 'stringpoint',  # CURLOPT_PROXY_CAPATH
-    248: 'long',  # CURLOPT_PROXY_SSL_VERIFYPEER
-    249: 'long',  # CURLOPT_PROXY_SSL_VERIFYHOST
-    250: 'values',  # CURLOPT_PROXY_SSLVERSION
-    10251: 'stringpoint',  # CURLOPT_PROXY_TLSAUTH_USERNAME
-    10252: 'stringpoint',  # CURLOPT_PROXY_TLSAUTH_PASSWORD
-    10253: 'stringpoint',  # CURLOPT_PROXY_TLSAUTH_TYPE
-    10254: 'stringpoint',  # CURLOPT_PROXY_SSLCERT
-    10255: 'stringpoint',  # CURLOPT_PROXY_SSLCERTTYPE
-    10256: 'stringpoint',  # CURLOPT_PROXY_SSLKEY
-    10257: 'stringpoint',  # CURLOPT_PROXY_SSLKEYTYPE
-    10258: 'stringpoint',  # CURLOPT_PROXY_KEYPASSWD
-    10259: 'stringpoint',  # CURLOPT_PROXY_SSL_CIPHER_LIST
-    10260: 'stringpoint',  # CURLOPT_PROXY_CRLFILE
-    261: 'long',  # CURLOPT_PROXY_SSL_OPTIONS
-    10262: 'stringpoint',  # CURLOPT_PRE_PROXY
-    10263: 'stringpoint',  # CURLOPT_PROXY_PINNEDPUBLICKEY
-    10264: 'stringpoint',  # CURLOPT_ABSTRACT_UNIX_SOCKET
-    265: 'long',  # CURLOPT_SUPPRESS_CONNECT_HEADERS
-    10266: 'stringpoint',  # CURLOPT_REQUEST_TARGET
-    267: 'long',  # CURLOPT_SOCKS5_AUTH
-    268: 'long',  # CURLOPT_SSH_COMPRESSION
-    10269: 'objectpoint',  # CURLOPT_MIMEPOST
-    30270: 'off_t',  # CURLOPT_TIMEVALUE_LARGE
-    271: 'long',  # CURLOPT_HAPPY_EYEBALLS_TIMEOUT_MS
-    20272: 'functionpoint',  # CURLOPT_RESOLVER_START_FUNCTION
-    10273: 'cbpoint',  # CURLOPT_RESOLVER_START_DATA
-    274: 'long',  # CURLOPT_HAPROXYPROTOCOL
-    275: 'long',  # CURLOPT_DNS_SHUFFLE_ADDRESSES
-    10276: 'stringpoint',  # CURLOPT_TLS13_CIPHERS
-    10277: 'stringpoint',  # CURLOPT_PROXY_TLS13_CIPHERS
-    278: 'long',  # CURLOPT_DISALLOW_USERNAME_IN_URL
-    10279: 'stringpoint',  # CURLOPT_DOH_URL
-    280: 'long',  # CURLOPT_UPLOAD_BUFFERSIZE
-    281: 'long',  # CURLOPT_UPKEEP_INTERVAL_MS
-    10282: 'objectpoint',  # CURLOPT_CURLU
-    20283: 'functionpoint',  # CURLOPT_TRAILERFUNCTION
-    10284: 'cbpoint',  # CURLOPT_TRAILERDATA
-    285: 'long',  # CURLOPT_HTTP09_ALLOWED
-    286: 'long',  # CURLOPT_ALTSVC_CTRL
-    10287: 'stringpoint',  # CURLOPT_ALTSVC
-    288: 'long',  # CURLOPT_MAXAGE_CONN
-    10289: 'stringpoint',  # CURLOPT_SASL_AUTHZID
-    290: 'long',  # CURLOPT_MAIL_RCPT_ALLOWFAILS
-    40291: 'blob',  # CURLOPT_SSLCERT_BLOB
-    40292: 'blob',  # CURLOPT_SSLKEY_BLOB
-    40293: 'blob',  # CURLOPT_PROXY_SSLCERT_BLOB
-    40294: 'blob',  # CURLOPT_PROXY_SSLKEY_BLOB
-    40295: 'blob',  # CURLOPT_ISSUERCERT_BLOB
-    10296: 'stringpoint',  # CURLOPT_PROXY_ISSUERCERT
-    40297: 'blob',  # CURLOPT_PROXY_ISSUERCERT_BLOB
-    10298: 'stringpoint',  # CURLOPT_SSL_EC_CURVES
-    299: 'long',  # CURLOPT_HSTS_CTRL
-    10300: 'stringpoint',  # CURLOPT_HSTS
-    20301: 'functionpoint',  # CURLOPT_HSTSREADFUNCTION
-    10302: 'cbpoint',  # CURLOPT_HSTSREADDATA
-    20303: 'functionpoint',  # CURLOPT_HSTSWRITEFUNCTION
-    10304: 'cbpoint',  # CURLOPT_HSTSWRITEDATA
-    10305: 'stringpoint',  # CURLOPT_AWS_SIGV4
-    306: 'long',  # CURLOPT_DOH_SSL_VERIFYPEER
-    307: 'long',  # CURLOPT_DOH_SSL_VERIFYHOST
-    308: 'long',  # CURLOPT_DOH_SSL_VERIFYSTATUS
-    40309: 'blob',  # CURLOPT_CAINFO_BLOB
-    40310: 'blob',  # CURLOPT_PROXY_CAINFO_BLOB
-    10311: 'stringpoint',  # CURLOPT_SSH_HOST_PUBLIC_KEY_SHA256
-    20312: 'functionpoint',  # CURLOPT_PREREQFUNCTION
-    10313: 'cbpoint',  # CURLOPT_PREREQDATA
-    314: 'long',  # CURLOPT_MAXLIFETIME_CONN
-    315: 'long',  # CURLOPT_MIME_OPTIONS
-    20316: 'functionpoint',  # CURLOPT_SSH_HOSTKEYFUNCTION
-    10317: 'cbpoint',  # CURLOPT_SSH_HOSTKEYDATA
-    10318: 'stringpoint',  # CURLOPT_PROTOCOLS_STR
-    10319: 'stringpoint',  # CURLOPT_REDIR_PROTOCOLS_STR
-    320: 'long',  # CURLOPT_WS_OPTIONS
-    321: 'long',  # CURLOPT_CA_CACHE_TIMEOUT
-    322: 'long',  # CURLOPT_QUICK_EXIT
-    10323: 'stringpoint',  # CURLOPT_HAPROXY_CLIENT_IP
-    324: 'long',  # CURLOPT_SERVER_RESPONSE_TIMEOUT_MS
-    10325: 'stringpoint',  # CURLOPT_ECH
-    326: 'long',  # CURLOPT_TCP_KEEPCNT
-    327: 'long',  # CURLOPT_UPLOAD_FLAGS
-    10328: 'stringpoint',  # CURLOPT_SSL_SIGNATURE_ALGORITHMS
+    10001: "cbpoint",  # CURLOPT_WRITEDATA
+    10002: "stringpoint",  # CURLOPT_URL
+    3: "long",  # CURLOPT_PORT
+    10004: "stringpoint",  # CURLOPT_PROXY
+    10005: "stringpoint",  # CURLOPT_USERPWD
+    10006: "stringpoint",  # CURLOPT_PROXYUSERPWD
+    10007: "stringpoint",  # CURLOPT_RANGE
+    10009: "cbpoint",  # CURLOPT_READDATA
+    10010: "objectpoint",  # CURLOPT_ERRORBUFFER
+    20011: "functionpoint",  # CURLOPT_WRITEFUNCTION
+    20012: "functionpoint",  # CURLOPT_READFUNCTION
+    13: "long",  # CURLOPT_TIMEOUT
+    14: "long",  # CURLOPT_INFILESIZE
+    10015: "objectpoint",  # CURLOPT_POSTFIELDS
+    10016: "stringpoint",  # CURLOPT_REFERER
+    10017: "stringpoint",  # CURLOPT_FTPPORT
+    10018: "stringpoint",  # CURLOPT_USERAGENT
+    19: "long",  # CURLOPT_LOW_SPEED_LIMIT
+    20: "long",  # CURLOPT_LOW_SPEED_TIME
+    21: "long",  # CURLOPT_RESUME_FROM
+    10022: "stringpoint",  # CURLOPT_COOKIE
+    10023: "slistpoint",  # CURLOPT_HTTPHEADER
+    10024: "objectpoint",  # CURLOPT_HTTPPOST
+    10025: "stringpoint",  # CURLOPT_SSLCERT
+    10026: "stringpoint",  # CURLOPT_KEYPASSWD
+    27: "long",  # CURLOPT_CRLF
+    10028: "slistpoint",  # CURLOPT_QUOTE
+    10029: "cbpoint",  # CURLOPT_HEADERDATA
+    10031: "stringpoint",  # CURLOPT_COOKIEFILE
+    32: "values",  # CURLOPT_SSLVERSION
+    33: "values",  # CURLOPT_TIMECONDITION
+    34: "long",  # CURLOPT_TIMEVALUE
+    10036: "stringpoint",  # CURLOPT_CUSTOMREQUEST
+    10037: "objectpoint",  # CURLOPT_STDERR
+    10039: "slistpoint",  # CURLOPT_POSTQUOTE
+    41: "long",  # CURLOPT_VERBOSE
+    42: "long",  # CURLOPT_HEADER
+    43: "long",  # CURLOPT_NOPROGRESS
+    44: "long",  # CURLOPT_NOBODY
+    45: "long",  # CURLOPT_FAILONERROR
+    46: "long",  # CURLOPT_UPLOAD
+    47: "long",  # CURLOPT_POST
+    48: "long",  # CURLOPT_DIRLISTONLY
+    50: "long",  # CURLOPT_APPEND
+    51: "values",  # CURLOPT_NETRC
+    52: "long",  # CURLOPT_FOLLOWLOCATION
+    53: "long",  # CURLOPT_TRANSFERTEXT
+    54: "long",  # CURLOPT_PUT
+    20056: "functionpoint",  # CURLOPT_PROGRESSFUNCTION
+    10057: "cbpoint",  # CURLOPT_XFERINFODATA
+    58: "long",  # CURLOPT_AUTOREFERER
+    59: "long",  # CURLOPT_PROXYPORT
+    60: "long",  # CURLOPT_POSTFIELDSIZE
+    61: "long",  # CURLOPT_HTTPPROXYTUNNEL
+    10062: "stringpoint",  # CURLOPT_INTERFACE
+    10063: "stringpoint",  # CURLOPT_KRBLEVEL
+    64: "long",  # CURLOPT_SSL_VERIFYPEER
+    10065: "stringpoint",  # CURLOPT_CAINFO
+    68: "long",  # CURLOPT_MAXREDIRS
+    69: "long",  # CURLOPT_FILETIME
+    10070: "slistpoint",  # CURLOPT_TELNETOPTIONS
+    71: "long",  # CURLOPT_MAXCONNECTS
+    74: "long",  # CURLOPT_FRESH_CONNECT
+    75: "long",  # CURLOPT_FORBID_REUSE
+    10076: "stringpoint",  # CURLOPT_RANDOM_FILE
+    10077: "stringpoint",  # CURLOPT_EGDSOCKET
+    78: "long",  # CURLOPT_CONNECTTIMEOUT
+    20079: "functionpoint",  # CURLOPT_HEADERFUNCTION
+    80: "long",  # CURLOPT_HTTPGET
+    81: "long",  # CURLOPT_SSL_VERIFYHOST
+    10082: "stringpoint",  # CURLOPT_COOKIEJAR
+    10083: "stringpoint",  # CURLOPT_SSL_CIPHER_LIST
+    84: "values",  # CURLOPT_HTTP_VERSION
+    85: "long",  # CURLOPT_FTP_USE_EPSV
+    10086: "stringpoint",  # CURLOPT_SSLCERTTYPE
+    10087: "stringpoint",  # CURLOPT_SSLKEY
+    10088: "stringpoint",  # CURLOPT_SSLKEYTYPE
+    10089: "stringpoint",  # CURLOPT_SSLENGINE
+    90: "long",  # CURLOPT_SSLENGINE_DEFAULT
+    91: "long",  # CURLOPT_DNS_USE_GLOBAL_CACHE
+    92: "long",  # CURLOPT_DNS_CACHE_TIMEOUT
+    10093: "slistpoint",  # CURLOPT_PREQUOTE
+    20094: "functionpoint",  # CURLOPT_DEBUGFUNCTION
+    10095: "cbpoint",  # CURLOPT_DEBUGDATA
+    96: "long",  # CURLOPT_COOKIESESSION
+    10097: "stringpoint",  # CURLOPT_CAPATH
+    98: "long",  # CURLOPT_BUFFERSIZE
+    99: "long",  # CURLOPT_NOSIGNAL
+    10100: "objectpoint",  # CURLOPT_SHARE
+    101: "values",  # CURLOPT_PROXYTYPE
+    10102: "stringpoint",  # CURLOPT_ACCEPT_ENCODING
+    10103: "objectpoint",  # CURLOPT_PRIVATE
+    10104: "slistpoint",  # CURLOPT_HTTP200ALIASES
+    105: "long",  # CURLOPT_UNRESTRICTED_AUTH
+    106: "long",  # CURLOPT_FTP_USE_EPRT
+    107: "values",  # CURLOPT_HTTPAUTH
+    20108: "functionpoint",  # CURLOPT_SSL_CTX_FUNCTION
+    10109: "cbpoint",  # CURLOPT_SSL_CTX_DATA
+    110: "long",  # CURLOPT_FTP_CREATE_MISSING_DIRS
+    111: "values",  # CURLOPT_PROXYAUTH
+    112: "long",  # CURLOPT_SERVER_RESPONSE_TIMEOUT
+    113: "values",  # CURLOPT_IPRESOLVE
+    114: "long",  # CURLOPT_MAXFILESIZE
+    30115: "off_t",  # CURLOPT_INFILESIZE_LARGE
+    30116: "off_t",  # CURLOPT_RESUME_FROM_LARGE
+    30117: "off_t",  # CURLOPT_MAXFILESIZE_LARGE
+    10118: "stringpoint",  # CURLOPT_NETRC_FILE
+    119: "values",  # CURLOPT_USE_SSL
+    30120: "off_t",  # CURLOPT_POSTFIELDSIZE_LARGE
+    121: "long",  # CURLOPT_TCP_NODELAY
+    129: "values",  # CURLOPT_FTPSSLAUTH
+    20130: "functionpoint",  # CURLOPT_IOCTLFUNCTION
+    10131: "cbpoint",  # CURLOPT_IOCTLDATA
+    10134: "stringpoint",  # CURLOPT_FTP_ACCOUNT
+    10135: "stringpoint",  # CURLOPT_COOKIELIST
+    136: "long",  # CURLOPT_IGNORE_CONTENT_LENGTH
+    137: "long",  # CURLOPT_FTP_SKIP_PASV_IP
+    138: "values",  # CURLOPT_FTP_FILEMETHOD
+    139: "long",  # CURLOPT_LOCALPORT
+    140: "long",  # CURLOPT_LOCALPORTRANGE
+    141: "long",  # CURLOPT_CONNECT_ONLY
+    20142: "functionpoint",  # CURLOPT_CONV_FROM_NETWORK_FUNCTION
+    20143: "functionpoint",  # CURLOPT_CONV_TO_NETWORK_FUNCTION
+    20144: "functionpoint",  # CURLOPT_CONV_FROM_UTF8_FUNCTION
+    30145: "off_t",  # CURLOPT_MAX_SEND_SPEED_LARGE
+    30146: "off_t",  # CURLOPT_MAX_RECV_SPEED_LARGE
+    10147: "stringpoint",  # CURLOPT_FTP_ALTERNATIVE_TO_USER
+    20148: "functionpoint",  # CURLOPT_SOCKOPTFUNCTION
+    10149: "cbpoint",  # CURLOPT_SOCKOPTDATA
+    150: "long",  # CURLOPT_SSL_SESSIONID_CACHE
+    151: "values",  # CURLOPT_SSH_AUTH_TYPES
+    10152: "stringpoint",  # CURLOPT_SSH_PUBLIC_KEYFILE
+    10153: "stringpoint",  # CURLOPT_SSH_PRIVATE_KEYFILE
+    154: "long",  # CURLOPT_FTP_SSL_CCC
+    155: "long",  # CURLOPT_TIMEOUT_MS
+    156: "long",  # CURLOPT_CONNECTTIMEOUT_MS
+    157: "long",  # CURLOPT_HTTP_TRANSFER_DECODING
+    158: "long",  # CURLOPT_HTTP_CONTENT_DECODING
+    159: "long",  # CURLOPT_NEW_FILE_PERMS
+    160: "long",  # CURLOPT_NEW_DIRECTORY_PERMS
+    161: "values",  # CURLOPT_POSTREDIR
+    10162: "stringpoint",  # CURLOPT_SSH_HOST_PUBLIC_KEY_MD5
+    20163: "functionpoint",  # CURLOPT_OPENSOCKETFUNCTION
+    10164: "cbpoint",  # CURLOPT_OPENSOCKETDATA
+    10165: "objectpoint",  # CURLOPT_COPYPOSTFIELDS
+    166: "long",  # CURLOPT_PROXY_TRANSFER_MODE
+    20167: "functionpoint",  # CURLOPT_SEEKFUNCTION
+    10168: "cbpoint",  # CURLOPT_SEEKDATA
+    10169: "stringpoint",  # CURLOPT_CRLFILE
+    10170: "stringpoint",  # CURLOPT_ISSUERCERT
+    171: "long",  # CURLOPT_ADDRESS_SCOPE
+    172: "long",  # CURLOPT_CERTINFO
+    10173: "stringpoint",  # CURLOPT_USERNAME
+    10174: "stringpoint",  # CURLOPT_PASSWORD
+    10175: "stringpoint",  # CURLOPT_PROXYUSERNAME
+    10176: "stringpoint",  # CURLOPT_PROXYPASSWORD
+    10177: "stringpoint",  # CURLOPT_NOPROXY
+    178: "long",  # CURLOPT_TFTP_BLKSIZE
+    10179: "stringpoint",  # CURLOPT_SOCKS5_GSSAPI_SERVICE
+    180: "long",  # CURLOPT_SOCKS5_GSSAPI_NEC
+    181: "long",  # CURLOPT_PROTOCOLS
+    182: "long",  # CURLOPT_REDIR_PROTOCOLS
+    10183: "stringpoint",  # CURLOPT_SSH_KNOWNHOSTS
+    20184: "functionpoint",  # CURLOPT_SSH_KEYFUNCTION
+    10185: "cbpoint",  # CURLOPT_SSH_KEYDATA
+    10186: "stringpoint",  # CURLOPT_MAIL_FROM
+    10187: "slistpoint",  # CURLOPT_MAIL_RCPT
+    188: "long",  # CURLOPT_FTP_USE_PRET
+    189: "values",  # CURLOPT_RTSP_REQUEST
+    10190: "stringpoint",  # CURLOPT_RTSP_SESSION_ID
+    10191: "stringpoint",  # CURLOPT_RTSP_STREAM_URI
+    10192: "stringpoint",  # CURLOPT_RTSP_TRANSPORT
+    193: "long",  # CURLOPT_RTSP_CLIENT_CSEQ
+    194: "long",  # CURLOPT_RTSP_SERVER_CSEQ
+    10195: "cbpoint",  # CURLOPT_INTERLEAVEDATA
+    20196: "functionpoint",  # CURLOPT_INTERLEAVEFUNCTION
+    197: "long",  # CURLOPT_WILDCARDMATCH
+    20198: "functionpoint",  # CURLOPT_CHUNK_BGN_FUNCTION
+    20199: "functionpoint",  # CURLOPT_CHUNK_END_FUNCTION
+    20200: "functionpoint",  # CURLOPT_FNMATCH_FUNCTION
+    10201: "cbpoint",  # CURLOPT_CHUNK_DATA
+    10202: "cbpoint",  # CURLOPT_FNMATCH_DATA
+    10203: "slistpoint",  # CURLOPT_RESOLVE
+    10204: "stringpoint",  # CURLOPT_TLSAUTH_USERNAME
+    10205: "stringpoint",  # CURLOPT_TLSAUTH_PASSWORD
+    10206: "stringpoint",  # CURLOPT_TLSAUTH_TYPE
+    207: "long",  # CURLOPT_TRANSFER_ENCODING
+    20208: "functionpoint",  # CURLOPT_CLOSESOCKETFUNCTION
+    10209: "cbpoint",  # CURLOPT_CLOSESOCKETDATA
+    210: "values",  # CURLOPT_GSSAPI_DELEGATION
+    10211: "stringpoint",  # CURLOPT_DNS_SERVERS
+    212: "long",  # CURLOPT_ACCEPTTIMEOUT_MS
+    213: "long",  # CURLOPT_TCP_KEEPALIVE
+    214: "long",  # CURLOPT_TCP_KEEPIDLE
+    215: "long",  # CURLOPT_TCP_KEEPINTVL
+    216: "values",  # CURLOPT_SSL_OPTIONS
+    10217: "stringpoint",  # CURLOPT_MAIL_AUTH
+    218: "long",  # CURLOPT_SASL_IR
+    20219: "functionpoint",  # CURLOPT_XFERINFOFUNCTION
+    10220: "stringpoint",  # CURLOPT_XOAUTH2_BEARER
+    10221: "stringpoint",  # CURLOPT_DNS_INTERFACE
+    10222: "stringpoint",  # CURLOPT_DNS_LOCAL_IP4
+    10223: "stringpoint",  # CURLOPT_DNS_LOCAL_IP6
+    10224: "stringpoint",  # CURLOPT_LOGIN_OPTIONS
+    225: "long",  # CURLOPT_SSL_ENABLE_NPN
+    226: "long",  # CURLOPT_SSL_ENABLE_ALPN
+    227: "long",  # CURLOPT_EXPECT_100_TIMEOUT_MS
+    10228: "slistpoint",  # CURLOPT_PROXYHEADER
+    229: "values",  # CURLOPT_HEADEROPT
+    10230: "stringpoint",  # CURLOPT_PINNEDPUBLICKEY
+    10231: "stringpoint",  # CURLOPT_UNIX_SOCKET_PATH
+    232: "long",  # CURLOPT_SSL_VERIFYSTATUS
+    233: "long",  # CURLOPT_SSL_FALSESTART
+    234: "long",  # CURLOPT_PATH_AS_IS
+    10235: "stringpoint",  # CURLOPT_PROXY_SERVICE_NAME
+    10236: "stringpoint",  # CURLOPT_SERVICE_NAME
+    237: "long",  # CURLOPT_PIPEWAIT
+    10238: "stringpoint",  # CURLOPT_DEFAULT_PROTOCOL
+    239: "long",  # CURLOPT_STREAM_WEIGHT
+    10240: "objectpoint",  # CURLOPT_STREAM_DEPENDS
+    10241: "objectpoint",  # CURLOPT_STREAM_DEPENDS_E
+    242: "long",  # CURLOPT_TFTP_NO_OPTIONS
+    10243: "slistpoint",  # CURLOPT_CONNECT_TO
+    244: "long",  # CURLOPT_TCP_FASTOPEN
+    245: "long",  # CURLOPT_KEEP_SENDING_ON_ERROR
+    10246: "stringpoint",  # CURLOPT_PROXY_CAINFO
+    10247: "stringpoint",  # CURLOPT_PROXY_CAPATH
+    248: "long",  # CURLOPT_PROXY_SSL_VERIFYPEER
+    249: "long",  # CURLOPT_PROXY_SSL_VERIFYHOST
+    250: "values",  # CURLOPT_PROXY_SSLVERSION
+    10251: "stringpoint",  # CURLOPT_PROXY_TLSAUTH_USERNAME
+    10252: "stringpoint",  # CURLOPT_PROXY_TLSAUTH_PASSWORD
+    10253: "stringpoint",  # CURLOPT_PROXY_TLSAUTH_TYPE
+    10254: "stringpoint",  # CURLOPT_PROXY_SSLCERT
+    10255: "stringpoint",  # CURLOPT_PROXY_SSLCERTTYPE
+    10256: "stringpoint",  # CURLOPT_PROXY_SSLKEY
+    10257: "stringpoint",  # CURLOPT_PROXY_SSLKEYTYPE
+    10258: "stringpoint",  # CURLOPT_PROXY_KEYPASSWD
+    10259: "stringpoint",  # CURLOPT_PROXY_SSL_CIPHER_LIST
+    10260: "stringpoint",  # CURLOPT_PROXY_CRLFILE
+    261: "long",  # CURLOPT_PROXY_SSL_OPTIONS
+    10262: "stringpoint",  # CURLOPT_PRE_PROXY
+    10263: "stringpoint",  # CURLOPT_PROXY_PINNEDPUBLICKEY
+    10264: "stringpoint",  # CURLOPT_ABSTRACT_UNIX_SOCKET
+    265: "long",  # CURLOPT_SUPPRESS_CONNECT_HEADERS
+    10266: "stringpoint",  # CURLOPT_REQUEST_TARGET
+    267: "long",  # CURLOPT_SOCKS5_AUTH
+    268: "long",  # CURLOPT_SSH_COMPRESSION
+    10269: "objectpoint",  # CURLOPT_MIMEPOST
+    30270: "off_t",  # CURLOPT_TIMEVALUE_LARGE
+    271: "long",  # CURLOPT_HAPPY_EYEBALLS_TIMEOUT_MS
+    20272: "functionpoint",  # CURLOPT_RESOLVER_START_FUNCTION
+    10273: "cbpoint",  # CURLOPT_RESOLVER_START_DATA
+    274: "long",  # CURLOPT_HAPROXYPROTOCOL
+    275: "long",  # CURLOPT_DNS_SHUFFLE_ADDRESSES
+    10276: "stringpoint",  # CURLOPT_TLS13_CIPHERS
+    10277: "stringpoint",  # CURLOPT_PROXY_TLS13_CIPHERS
+    278: "long",  # CURLOPT_DISALLOW_USERNAME_IN_URL
+    10279: "stringpoint",  # CURLOPT_DOH_URL
+    280: "long",  # CURLOPT_UPLOAD_BUFFERSIZE
+    281: "long",  # CURLOPT_UPKEEP_INTERVAL_MS
+    10282: "objectpoint",  # CURLOPT_CURLU
+    20283: "functionpoint",  # CURLOPT_TRAILERFUNCTION
+    10284: "cbpoint",  # CURLOPT_TRAILERDATA
+    285: "long",  # CURLOPT_HTTP09_ALLOWED
+    286: "long",  # CURLOPT_ALTSVC_CTRL
+    10287: "stringpoint",  # CURLOPT_ALTSVC
+    288: "long",  # CURLOPT_MAXAGE_CONN
+    10289: "stringpoint",  # CURLOPT_SASL_AUTHZID
+    290: "long",  # CURLOPT_MAIL_RCPT_ALLOWFAILS
+    40291: "blob",  # CURLOPT_SSLCERT_BLOB
+    40292: "blob",  # CURLOPT_SSLKEY_BLOB
+    40293: "blob",  # CURLOPT_PROXY_SSLCERT_BLOB
+    40294: "blob",  # CURLOPT_PROXY_SSLKEY_BLOB
+    40295: "blob",  # CURLOPT_ISSUERCERT_BLOB
+    10296: "stringpoint",  # CURLOPT_PROXY_ISSUERCERT
+    40297: "blob",  # CURLOPT_PROXY_ISSUERCERT_BLOB
+    10298: "stringpoint",  # CURLOPT_SSL_EC_CURVES
+    299: "long",  # CURLOPT_HSTS_CTRL
+    10300: "stringpoint",  # CURLOPT_HSTS
+    20301: "functionpoint",  # CURLOPT_HSTSREADFUNCTION
+    10302: "cbpoint",  # CURLOPT_HSTSREADDATA
+    20303: "functionpoint",  # CURLOPT_HSTSWRITEFUNCTION
+    10304: "cbpoint",  # CURLOPT_HSTSWRITEDATA
+    10305: "stringpoint",  # CURLOPT_AWS_SIGV4
+    306: "long",  # CURLOPT_DOH_SSL_VERIFYPEER
+    307: "long",  # CURLOPT_DOH_SSL_VERIFYHOST
+    308: "long",  # CURLOPT_DOH_SSL_VERIFYSTATUS
+    40309: "blob",  # CURLOPT_CAINFO_BLOB
+    40310: "blob",  # CURLOPT_PROXY_CAINFO_BLOB
+    10311: "stringpoint",  # CURLOPT_SSH_HOST_PUBLIC_KEY_SHA256
+    20312: "functionpoint",  # CURLOPT_PREREQFUNCTION
+    10313: "cbpoint",  # CURLOPT_PREREQDATA
+    314: "long",  # CURLOPT_MAXLIFETIME_CONN
+    315: "long",  # CURLOPT_MIME_OPTIONS
+    20316: "functionpoint",  # CURLOPT_SSH_HOSTKEYFUNCTION
+    10317: "cbpoint",  # CURLOPT_SSH_HOSTKEYDATA
+    10318: "stringpoint",  # CURLOPT_PROTOCOLS_STR
+    10319: "stringpoint",  # CURLOPT_REDIR_PROTOCOLS_STR
+    320: "long",  # CURLOPT_WS_OPTIONS
+    321: "long",  # CURLOPT_CA_CACHE_TIMEOUT
+    322: "long",  # CURLOPT_QUICK_EXIT
+    10323: "stringpoint",  # CURLOPT_HAPROXY_CLIENT_IP
+    324: "long",  # CURLOPT_SERVER_RESPONSE_TIMEOUT_MS
+    10325: "stringpoint",  # CURLOPT_ECH
+    326: "long",  # CURLOPT_TCP_KEEPCNT
+    327: "long",  # CURLOPT_UPLOAD_FLAGS
+    10328: "stringpoint",  # CURLOPT_SSL_SIGNATURE_ALGORITHMS
 }

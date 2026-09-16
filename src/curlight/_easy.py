@@ -1,7 +1,8 @@
 """Owned, non-thread-safe easy handles with checked native argument types."""
+
 from __future__ import annotations
 
-from collections.abc import Callable, Iterable
+from collections.abc import Callable
 from typing import Any
 
 from ._backend import backend as b
@@ -60,6 +61,11 @@ class Curl:
         if kind in {"long", "values", "off_t"}:
             if not isinstance(value, int):
                 raise TypeError("integer option requires int or IntEnum")
+            import ctypes
+
+            bits = 64 if kind == "off_t" else ctypes.sizeof(ctypes.c_long) * 8
+            if not -(1 << (bits - 1)) <= value < (1 << (bits - 1)):
+                raise OverflowError(f"option requires a signed {bits}-bit integer")
             ref = b.scalar("curl_off_t" if kind == "off_t" else "long", value)
         elif kind == "stringpoint":
             if value is None:
@@ -74,7 +80,7 @@ class Curl:
                 raise TypeError("string-list options require an iterable of strings")
             new_list = b.null
             try:
-                for item in (() if value is None else value):
+                for item in () if value is None else value:
                     data = self._encode(item)
                     if b"\0" in data:
                         raise ValueError("NUL in string list")
@@ -94,8 +100,12 @@ class Curl:
             data = self._encode(value)
             self.setopt(CurlOpt.POSTFIELDSIZE_LARGE, len(data))
             ref = b.buffer(data)
-        elif opt in {int(CurlOpt.WRITEFUNCTION), int(CurlOpt.HEADERFUNCTION),
-                     int(CurlOpt.READFUNCTION), int(CurlOpt.XFERINFOFUNCTION)}:
+        elif opt in {
+            int(CurlOpt.WRITEFUNCTION),
+            int(CurlOpt.HEADERFUNCTION),
+            int(CurlOpt.READFUNCTION),
+            int(CurlOpt.XFERINFOFUNCTION),
+        }:
             if not callable(value):
                 raise TypeError("callback option requires a callable")
             ref = self._callback(opt, value)
@@ -124,12 +134,14 @@ class Curl:
 
     def _callback(self, opt: int, fn: Callable[..., Any]) -> Any:
         if opt == int(CurlOpt.XFERINFOFUNCTION):
+
             def progress(userdata: Any, *counts: int) -> int:
                 try:
                     return int(bool(fn(*counts)))
                 except BaseException as exc:
                     self._callback_error = exc
                     return 1
+
             return b.callback("progress", progress)
 
         def callback(ptr: Any, size: int, count: int, userdata: Any) -> int:
@@ -141,19 +153,30 @@ class Curl:
                         raise ValueError("read callback must return bytes no longer than requested")
                     b.write_memory(ptr, data)
                     return len(data)
-                result = fn(b.bytes(ptr, length))
-                return length if result is None else int(result)
+                result = fn(b.read_memory(ptr, length))
+                if result is None:
+                    return length
+                if not isinstance(result, int) or not 0 <= result <= length:
+                    raise ValueError(
+                        "write callback must return None or a byte count within the chunk"
+                    )
+                return result
             except BaseException as exc:
                 self._callback_error = exc
                 return 0x10000000 if opt == int(CurlOpt.READFUNCTION) else 0
+
         return b.callback("write", callback)
 
     def getinfo(self, info: CurlInfo | int) -> Any:
         """Read a scalar/string info or an owned copy of COOKIELIST/SSL_ENGINES."""
         self._require_idle()
         number = int(info)
-        kind = {0x100000: "char *", 0x200000: "long", 0x300000: "double",
-                0x600000: "curl_off_t"}.get(number & 0xF00000)
+        kind = {
+            0x100000: "char *",
+            0x200000: "long",
+            0x300000: "double",
+            0x600000: "curl_off_t",
+        }.get(number & 0xF00000)
         is_list = number in {int(CurlInfo.COOKIELIST), int(CurlInfo.SSL_ENGINES)}
         if is_list:
             kind = "struct curl_slist *"

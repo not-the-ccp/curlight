@@ -1,4 +1,5 @@
 """Public exception hierarchy."""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -40,7 +41,16 @@ class HTTPError(Exception):
 
 
 def error_for(code: int, message: str) -> CurlError:
-    cls = {5: ConnectionError, 6: ConnectionError, 7: ConnectionError, 28: Timeout,
-           35: SSLError, 47: TooManyRedirects, 58: SSLError, 60: SSLError,
-           77: SSLError, 90: SSLError}.get(code, CurlError)
+    cls = {
+        5: ConnectionError,
+        6: ConnectionError,
+        7: ConnectionError,
+        28: Timeout,
+        35: SSLError,
+        47: TooManyRedirects,
+        58: SSLError,
+        60: SSLError,
+        77: SSLError,
+        90: SSLError,
+    }.get(code, CurlError)
     return cls(code, message)
